@@ -2,6 +2,11 @@ openapi: 3.0.0
 info:
   title: Students managing API
   version: 2.0.0
+tags:
+  - name: v1
+    description: Version 1.0.0 de HEI-managing-api
+  - name: v2
+    description: Version 2.0.0 de HEI-managing-api
 servers:
   - url: https://STD22064.com
 paths:
@@ -116,8 +121,3 @@ paths:
               example:
                 message: An error occurred while adding the student
 
-tags:
-  - name: v1
-    description: Version 1 de HEI-managing-api
-  - name: v2
-    description: Version 2 de HEI-managing-api
