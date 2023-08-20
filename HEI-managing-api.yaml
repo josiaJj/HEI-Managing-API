@@ -5,7 +5,7 @@ info:
 servers:
   - url: https://STD22064.com
 paths:
-  /students:
+  /v1/students:
     get:
       summary: Get student informations
       responses:
