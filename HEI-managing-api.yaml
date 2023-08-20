@@ -10,10 +10,17 @@ tags:
 servers:
   - url: https://STD22064.com
 paths:
-  /v1 : 
-  /students:
+  '/students/{id}':
     get:
-      summary: Get student informations
+      tags: 
+        - v1
+      summary: Get student informations by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
       responses:
         '200':
           description: Successful response
@@ -29,8 +36,54 @@ paths:
             application/json:
               example:
                 message: An error occurred
-
+    put:
+      tags:
+        - v2
+      summary: Update student by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                birthdate:
+                  type: string
+              required:
+                - name
+                - birthdate
+      responses:
+        '200':
+          description: Student details successfully updated
+        '500': 
+          description: An error occurred
+    delete: 
+      tags: 
+        - v2
+      summary: Supprimer un étudiant par ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Student deleted
+        '500':
+          description: Error
+  /students:
     post:
+      tags : 
+        - v1
       summary: Add a new student
       requestBody:
         required: true
@@ -66,28 +119,11 @@ paths:
             application/json:
               example:
                 message: An error occurred while adding the student
-  /v2:
-  /students:
-    get:
-      summary: Get studentsssssss informations
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              example:
-                "id": 1
-                "name": "Josia"
-                "birthdate": "2001-06-10"
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              example:
-                message: An error occurred
-
+  /teachers:
     post:
-      summary: Add a new student
+      tags:
+        - v2
+      summary: Add a new teacher
       requestBody:
         required: true
         content:
@@ -95,31 +131,88 @@ paths:
             schema:
               type: object
               properties:
-                id:
-                  type: integer
-                name:
+                firstname:
                   type: string
-                birthdate:
+                lastname:
                   type: string
+                courses:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      course-name:
+                        type: string
+                      course-code: 
+                        type: string
+                      course-duration:
+                        type: string
               required:
-                - id
-                - name
-                - birthdate
-            example:
-              id: 2
-              name: "Kioto"
-              birthdate: "2001-01-06"
+                - firstname
+                - lastname
+                - courses
+            example: 
+              "firstname": Ryan
+              "lastname": Raveloson
+              "courses":
+                - course-name: Interface de Prigrammation
+                  course-code: API
+                  course-duration: 20 heures
+                - course-name: Mathématique appliquée
+                  course-code: THEORIE2
+                  course-duration: 25 heures
+              
+    get:
+      tags:
+        - v2
+      summary: Retrieve the list of teachers
       responses:
         '200':
-          description: Successful response
-          content:
-            application/json:
-              example:
-                message: Student added successfully
+          description: Teachers list successfully retrieved
         '500':
-          description: Internal server error
+          description: An error occured
+          
+  '/teachers/{id}':
+    get:
+      tags:
+        - v2
+      summary: Retrieve teacher details by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Informations de l'enseignant récupérées avec succès
           content:
             application/json:
+              schema:
+                type: object
+                properties:
+                  firstname:
+                    type: string
+                  lastname:
+                    type: string
+                  courses:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        course-name:
+                          type: string
+                        course-code: 
+                          type: string
+                        course-duration:
+                          type: string
               example:
-                message: An error occurred while adding the student
-
+                "firstname": Tokimahery
+                "lastname": Ramarozaka
+                "courses":
+                  - course-name: Programmmation
+                    course-code: PROG1
+                    course-duration: 30 heures
+                  - course-name: Developpement WEB
+                    course-code: WEB1
+                    course-duration: 28 heures
+ 
