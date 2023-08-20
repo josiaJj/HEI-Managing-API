@@ -47,8 +47,7 @@ paths:
           required: true
           schema:
             type: integer
-          example: 
-            "id": 3
+          example: 3
       requestBody:
         required: true
         content:
@@ -92,8 +91,7 @@ paths:
           required: true
           schema:
             type: integer
-          example: 
-            "id": 3
+          example: 3
       responses:
         '200':
           description: Student deleted succesfully
@@ -240,8 +238,7 @@ paths:
           required: true
           schema:
             type: integer
-          example: 
-            "id": 4
+          example: 4
       responses:
         '200':
           description: Teacher informations successfully retrieved
