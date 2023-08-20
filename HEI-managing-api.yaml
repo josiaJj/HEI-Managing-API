@@ -10,7 +10,8 @@ tags:
 servers:
   - url: https://STD22064.com
 paths:
-  v1/students:
+  /v1 : 
+  /students:
     get:
       summary: Get student informations
       responses:
@@ -65,7 +66,8 @@ paths:
             application/json:
               example:
                 message: An error occurred while adding the student
-  /v2/students:
+  /v2:
+  /students:
     get:
       summary: Get studentsssssss informations
       responses:
