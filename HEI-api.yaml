@@ -60,3 +60,9 @@ paths:
             application/json:
               example:
                 message: An error occurred while adding the student
+
+tags:
+  - name: v1
+    description: Version 1 de HEI-managing-api
+  - name: v2
+    description: Version 2 de HEI-managing-api
