@@ -21,6 +21,8 @@ paths:
           required: true
           schema:
             type: integer
+          example: 
+            "id": 1
       responses:
         '200':
           description: Successful response
@@ -46,6 +48,8 @@ paths:
           required: true
           schema:
             type: integer
+          example: 
+            "id": 3
       requestBody:
         required: true
         content:
@@ -60,11 +64,25 @@ paths:
               required:
                 - name
                 - birthdate
+            example: 
+              "name": Rasta
+              "birthdate": "2003-05-08"
       responses:
         '200':
           description: Student details successfully updated
+          content: 
+            application/json: 
+              example: 
+                "id": 3
+                "name": Rasta
+                "birthdate": "2003-05-08"
         '500': 
-          description: An error occurred
+          description: Internal server error
+          content:
+            application/json:
+              example:
+                message: An error occurred
+          
     delete: 
       tags: 
         - v2
@@ -75,11 +93,23 @@ paths:
           required: true
           schema:
             type: integer
+          example: 
+            "id": 3
       responses:
         '200':
-          description: Student deleted
+          description: Student deleted succesfully
+          content: 
+            application/json: 
+              example: 
+                "id": 3
+                "name": Rasta
+                "birthdate": "2003-05-08"
         '500':
-          description: Error
+          description: Internal server error
+          content:
+            application/json:
+              example:
+                message: An error occurred
   /students:
     post:
       tags : 
@@ -113,12 +143,14 @@ paths:
             application/json:
               example:
                 message: Student added successfully
+                "name": "Kioto"
+                "birthdate": "2001-01-06"
         '500':
           description: Internal server error
           content:
             application/json:
               example:
-                message: An error occurred while adding the student
+                message: An error occurred
   /teachers:
     post:
       tags:
@@ -160,7 +192,29 @@ paths:
                 - course-name: Mathématique appliquée
                   course-code: THEORIE2
                   course-duration: 25 heures
-              
+      responses: 
+        '200': 
+          description: Teacher successfully added
+          content:
+            application/json:
+              example:
+                "id": 5
+                "firstname": Ryan
+                "lastname": Raveloson
+                "courses":
+                  - course-name: Interface de Prigrammation
+                    course-code: API
+                    course-duration: 20 heures
+                  - course-name: Mathématique appliquée
+                    course-code: THEORIE2
+                    course-duration: 25 heures
+        '500': 
+          description: Internal server error
+          content:
+            application/json:
+              example:
+                message: An error occurred
+                  
     get:
       tags:
         - v2
@@ -168,8 +222,13 @@ paths:
       responses:
         '200':
           description: Teachers list successfully retrieved
+            
         '500':
-          description: An error occured
+          description: Internal server error
+          content:
+            application/json:
+              example:
+                message: An error occurred
           
   '/teachers/{id}':
     get:
@@ -182,9 +241,11 @@ paths:
           required: true
           schema:
             type: integer
+          example: 
+            "id": 4
       responses:
         '200':
-          description: Informations de l'enseignant récupérées avec succès
+          description: Teacher informations successfully retrieved
           content:
             application/json:
               schema:
@@ -206,6 +267,7 @@ paths:
                         course-duration:
                           type: string
               example:
+                "id": 4
                 "firstname": Tokimahery
                 "lastname": Ramarozaka
                 "courses":
