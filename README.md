@@ -1,5 +1,5 @@
 # Student-Managing-API
 ## API - **STD22064** - ANDRIAMAHERILALA josia 
 
-Vous pouvez le tester sur [Swagger Editor](https://editor.swagger.io/).
+Vous pouvez le tester sur [Swagger UI](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/josiaJj/HEI-Managing-API/main/HEI-api.yaml).
 
